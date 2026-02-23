@@ -1,0 +1,94 @@
+# Mastering Date and Time in SQL
+
+## 📅 Understanding Date and Time Concepts
+- SQL handles three main date/time data types: **date**, **time**, and **timestamp (or datetime)**.
+- **Date** consists of year (4 digits), month (1-12), and day (1-31).
+- **Time** includes hours (0-23), minutes (0-59), and seconds (0-59).
+- **Timestamp (datetime)** combines date and time components, showing year to seconds and fractions.
+- Different SQL databases may name timestamp differently (e.g., SQL Server uses `datetime`).
+
+## 🛠️ Sources and Uses of Date Data
+- Date/time data in SQL queries can come from:
+  - Database columns storing date/time.
+  - Hardcoded static date strings within queries.
+  - Functions like `GETDATE()` to obtain current date and time dynamically.
+- These sources allow flexibility for querying, calculations, and filtering.
+
+## 🔍 Extracting Parts from Dates
+- SQL provides multiple functions to extract date parts:
+  - Simple functions: `DAY()`, `MONTH()`, `YEAR()` return integer values.
+  - `DATEPART()` extracts various parts like week, quarter, hour, minute, returning integers.
+  - `DATENAME()` returns the **name** of date parts (e.g., "August", "Wednesday") as strings.
+- Outputs differ by function: numeric for `DAY`, `DATEPART` vs. string for `DATENAME`.
+- Useful for reporting and filtering, e.g., filtering orders by month number or displaying month names.
+
+## ⏳ Manipulating Dates with DateTrunc and EndOfMonth
+- `DATETRUNC()` truncates a datetime to a specified level (year, month, day, hour, etc.), resetting lower parts to zero or first of the unit.
+- It enables adjusting the granularity of datetime data for aggregation (e.g., grouping orders by month or year).
+- `EOMONTH()` returns the last day of the month for a given date.
+- To get the first day of the month, combine `DATETRUNC()` with casting to date type.
+- These functions facilitate flexible date-based analytics and reporting.
+
+## 📊 Practical Applications and Best Practices
+- Extracted date parts allow:
+  - Aggregation and grouping in reports by year, quarter, month, or week.
+  - Filtering data efficiently by numeric parts (prefer integers over strings for performance).
+  - Formatting dates for user-friendly display (`DATENAME()` for readable month/day names).
+- Understanding output data types (integer, string, datetime) prevents errors.
+- Decision guide for function choice:
+  - Use `DAY()`, `MONTH()`, `YEAR()` for numeric parts.
+  - Use `DATENAME()` for textual names.
+  - Use `DATEPART()` for less common parts like quarter, week.
+- Combining these functions enhances SQL query power for date/time manipulation.
+
+---
+
+# Mind Map Outline
+
+## 📅 Date and Time Concepts in SQL
+- Definitions
+  - Date: year, month, day
+  - Time: hour, minute, second
+  - Timestamp/Datetime: combined date and time
+- Database variations in naming (Oracle, MySQL, SQL Server)
+
+## 🛠️ Sources of Date/Time Data in SQL Queries
+- Stored columns in database tables
+- Hardcoded date strings in queries
+- Dynamic current date/time via `GETDATE()` function
+
+## 🔍 Extracting Date Parts
+- Basic extraction functions
+  - DAY(), MONTH(), YEAR()
+- Advanced extraction: `DATEPART()`
+  - Parts: week, quarter, hour, minute, second, weekday
+  - Returns integer values
+- Name extraction: `DATENAME()`
+  - Returns string names for month, weekday, etc.
+- Syntax and examples
+- Differences in output data types
+
+## ⏳ Date Manipulation Functions
+- `DATETRUNC()` (Date truncate)
+  - Truncates datetime to specified level (year, month, day, hour, etc.)
+  - Resets lower-order components
+  - Useful for aggregation and granularity control
+- `EOMONTH()` (End of month)
+  - Returns last day of month for given date
+- Getting first day of month via `DATETRUNC()` + casting
+- Examples of practical usage for analytics
+
+## 📊 Use Cases and Best Practices
+- Aggregation by year, quarter, month, week using extracted parts
+- Filtering data by date components (prefer numeric parts for efficiency)
+- Formatting for readable reports with `DATENAME()`
+- Handling data types to avoid query errors
+- Function selection logic based on requirement (numeric vs. string output)
+
+## ➕ Additional Notes
+- Overview of 13 date/time functions grouped into 4 categories:
+  - Part extraction (7 functions)
+  - Formatting and casting (3 functions)
+  - Calculations (`DATEADD()`, `DATEDIFF()`)
+  - Validation (`ISDATE()`)
+- Practical query examples combining functions for learning and testing
