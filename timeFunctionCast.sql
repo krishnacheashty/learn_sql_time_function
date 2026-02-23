@@ -101,10 +101,18 @@ FROM Sales.Orders AS O
 
 --date validatiion
 
-select 
-CAST (o.OrderDate AS date) orderdate,
-ISDATE(O.CreationTime) DATECHECK
-from Sales.Orders AS O;
+SELECT 
+OrderDate,
+ISDATE(OrderDate),
+CASE WHEN ISDATE(OrderDate)= 1 THEN CAST(OrderDate AS DATE)
+ELSE '9999-01-01'
+END NewOrderdate
+FROM 
+(SELECT '2025-08-20' AS OrderDate UNION
+SELECT '2025-08-21' UNION
+SELECT '2025-08-23' UNION
+SELECT '2025-08'
+)T
 
 
 
